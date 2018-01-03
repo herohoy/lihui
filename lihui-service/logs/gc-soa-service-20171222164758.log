@@ -1,0 +1,12 @@
+OpenJDK 64-Bit Server VM (25.151-b12) for linux-amd64 JRE (1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12), built on Oct 27 2017 21:59:02 by "buildd" with gcc 5.4.0 20160609
+Memory: 4k page, physical 3927672k(138852k free), swap 4077564k(2053792k free)
+CommandLine flags: -XX:+HeapDumpOnOutOfMemoryError -XX:InitialHeapSize=536870912 -XX:MaxHeapSize=1073741824 -XX:NewRatio=1 -XX:+PrintGC -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:SurvivorRatio=30 -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseParallelGC -XX:+UseParallelOldGC 
+Heap
+ PSYoungGen      total 253952K, used 9830K [0x00000000e0000000, 0x00000000f0000000, 0x0000000100000000)
+  eden space 245760K, 4% used [0x00000000e0000000,0x00000000e09999b8,0x00000000ef000000)
+  from space 8192K, 0% used [0x00000000ef800000,0x00000000ef800000,0x00000000f0000000)
+  to   space 8192K, 0% used [0x00000000ef000000,0x00000000ef000000,0x00000000ef800000)
+ ParOldGen       total 262144K, used 0K [0x00000000c0000000, 0x00000000d0000000, 0x00000000e0000000)
+  object space 262144K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000d0000000)
+ Metaspace       used 2672K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 292K, capacity 384K, committed 384K, reserved 1048576K

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaSbtSettings">
+    <option name="linkedExternalProjectsSettings">
+      <SbtProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/lihui-api" />
+            <option value="$PROJECT_DIR$/lihui-api/project" />
+            <option value="$PROJECT_DIR$/lihui-service" />
+            <option value="$PROJECT_DIR$/lihui-service/project" />
+            <option value="$PROJECT_DIR$/project" />
+          </set>
+        </option>
+        <option name="sbtVersion" value="1.0.0" />
+      </SbtProjectSettings>
+    </option>
+  </component>
+</project>

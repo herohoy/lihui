@@ -1,0 +1,129 @@
+01-03 20:43:09 703 Thread-8 INFO - {dataSource-1} inited
+01-03 20:43:24 283 trans-pool-1-thread-1 INFO - com.today36524.api.user.service.UserService 1.0.0 getServiceMetadata operatorId:Optional.empty operatorName:Optional.empty request body:getServiceMetadata_args()
+01-03 20:43:24 292 trans-pool-1-thread-1 DEBUG - com.today36524.api.user.service.UserService 1.0.0 getServiceMetadata Optional.empty request header:Optional.empty body:getServiceMetadata_args()
+01-03 20:43:24 313 trans-pool-1-thread-1 INFO - com.today36524.api.user.service.UserService 1.0.0 getServiceMetadata operatorId:Optional.empty operatorName:Optional.empty response body:getServiceMetadata_result(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service namespace="com.today36524.api.user.se...(51882)
+01-03 20:43:24 314 trans-pool-1-thread-1 DEBUG - com.today36524.api.user.service.UserService 1.0.0 getServiceMetadata Optional.empty response header:Optional.empty body:getServiceMetadata_result(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service namespace="com.today36524.api.user.se...(51882)
+01-03 20:45:02 958 trans-pool-1-thread-2 INFO - com.today36524.api.user.service.UserService 1.0.0 login operatorId:Optional.empty operatorName:Optional.empty request body:login_args(LoginUserRequest(11,13333333333))
+01-03 20:45:02 959 trans-pool-1-thread-2 DEBUG - com.today36524.api.user.service.UserService 1.0.0 login Optional.empty request header:Optional.empty body:login_args(LoginUserRequest(11,13333333333))
+01-03 20:45:03 286 trans-pool-1-thread-2 DEBUG - SQL Preparing: 
+       select
+       user_name as userName,
+       telephone,
+       status,
+       integral,
+       unix_timestamp(created_at) as createdAt,
+       unix_timestamp(updated_at) as updatedAt,
+       email,
+       qq
+       from user
+       where telephone=?
+        args: WrappedArray(JdbcValue(13333333333))
+01-03 20:45:03 475 trans-pool-1-thread-2 DEBUG - SQL result: 0
+01-03 20:45:03 486 trans-pool-1-thread-2 ERROR - :未找到当前用户
+com.isuwang.dapeng.core.SoaException: :未找到当前用户
+	at com.today36524.api.user.dao.UserDao.getUserByPhone(UserDao.scala:126) ~[classes/:na]
+	at com.today36524.api.user.service.UserServiceImpl.login(UserServiceImpl.scala:92) ~[classes/:na]
+	at com.today36524.api.user.UserServiceCodec$login.getResult(UserServiceCodec.scala:324) ~[classes/:na]
+	at com.today36524.api.user.UserServiceCodec$login.getResult(UserServiceCodec.scala:314) ~[classes/:na]
+	at com.isuwang.dapeng.core.SoaCommonBaseProcessor.lambda$process$0(SoaCommonBaseProcessor.java:84) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.DispatchFilter.doFilter(DispatchFilter.java:27) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.ContainerFilterChain.doFilter(ContainerFilterChain.java:35) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.filter.SlowTimeServiceFilter.doFilter(SlowTimeServiceFilter.java:29) ~[dapeng-container-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.ContainerFilterChain.doFilter(ContainerFilterChain.java:35) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.filter.ProviderTimesFilter.doFilter(ProviderTimesFilter.java:29) ~[dapeng-container-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.ContainerFilterChain.doFilter(ContainerFilterChain.java:35) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.filter.SoaGlobalTransactionalFilter.doFilter(SoaGlobalTransactionalFilter.java:50) ~[dapeng-container-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.ContainerFilterChain.doFilter(ContainerFilterChain.java:35) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.SoaCommonBaseProcessor.process(SoaCommonBaseProcessor.java:103) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.netty.SoaServerHandler.processRequest(SoaServerHandler.java:299) ~[dapeng-container-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.netty.SoaServerHandler.lambda$readRequestHeader$5(SoaServerHandler.java:130) ~[dapeng-container-1.3.0.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) ~[na:1.8.0_151]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) ~[na:1.8.0_151]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_151]
+01-03 20:45:15 834 trans-pool-1-thread-3 INFO - com.today36524.api.user.service.UserService 1.0.0 login operatorId:Optional.empty operatorName:Optional.empty request body:login_args(LoginUserRequest(11,13345678901))
+01-03 20:45:15 834 trans-pool-1-thread-3 DEBUG - com.today36524.api.user.service.UserService 1.0.0 login Optional.empty request header:Optional.empty body:login_args(LoginUserRequest(11,13345678901))
+01-03 20:45:15 835 trans-pool-1-thread-3 DEBUG - SQL Preparing: 
+       select
+       user_name as userName,
+       telephone,
+       status,
+       integral,
+       unix_timestamp(created_at) as createdAt,
+       unix_timestamp(updated_at) as updatedAt,
+       email,
+       qq
+       from user
+       where telephone=?
+        args: WrappedArray(JdbcValue(13345678901))
+01-03 20:45:15 902 trans-pool-1-thread-3 DEBUG - SQL result: 0
+01-03 20:45:15 904 trans-pool-1-thread-3 DEBUG - SQL Preparing: 
+       select
+       user_name as userName,
+       telephone,
+       status,
+       integral,
+       unix_timestamp(created_at) as createdAt,
+       unix_timestamp(updated_at) as updatedAt,
+       email,
+       qq
+       from user
+       where telephone=?
+         and password=?
+        args: WrappedArray(JdbcValue(13345678901), JdbcValue(11))
+01-03 20:45:15 926 trans-pool-1-thread-3 DEBUG - SQL result: 0
+01-03 20:45:15 929 trans-pool-1-thread-3 ERROR - :密码不正确
+com.isuwang.dapeng.core.SoaException: :密码不正确
+	at com.today36524.api.user.dao.UserDao.authUser(UserDao.scala:156) ~[classes/:na]
+	at com.today36524.api.user.service.UserServiceImpl.login(UserServiceImpl.scala:97) ~[classes/:na]
+	at com.today36524.api.user.UserServiceCodec$login.getResult(UserServiceCodec.scala:324) ~[classes/:na]
+	at com.today36524.api.user.UserServiceCodec$login.getResult(UserServiceCodec.scala:314) ~[classes/:na]
+	at com.isuwang.dapeng.core.SoaCommonBaseProcessor.lambda$process$0(SoaCommonBaseProcessor.java:84) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.DispatchFilter.doFilter(DispatchFilter.java:27) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.ContainerFilterChain.doFilter(ContainerFilterChain.java:35) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.filter.SlowTimeServiceFilter.doFilter(SlowTimeServiceFilter.java:29) ~[dapeng-container-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.ContainerFilterChain.doFilter(ContainerFilterChain.java:35) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.filter.ProviderTimesFilter.doFilter(ProviderTimesFilter.java:29) ~[dapeng-container-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.ContainerFilterChain.doFilter(ContainerFilterChain.java:35) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.filter.SoaGlobalTransactionalFilter.doFilter(SoaGlobalTransactionalFilter.java:50) ~[dapeng-container-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.filter.container.ContainerFilterChain.doFilter(ContainerFilterChain.java:35) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.core.SoaCommonBaseProcessor.process(SoaCommonBaseProcessor.java:103) ~[dapeng-core-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.netty.SoaServerHandler.processRequest(SoaServerHandler.java:299) ~[dapeng-container-1.3.0.jar:na]
+	at com.isuwang.dapeng.container.netty.SoaServerHandler.lambda$readRequestHeader$5(SoaServerHandler.java:130) ~[dapeng-container-1.3.0.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) ~[na:1.8.0_151]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) ~[na:1.8.0_151]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_151]
+01-03 20:45:24 904 trans-pool-1-thread-4 INFO - com.today36524.api.user.service.UserService 1.0.0 login operatorId:Optional.empty operatorName:Optional.empty request body:login_args(LoginUserRequest(today36524,13345678901))
+01-03 20:45:24 905 trans-pool-1-thread-4 DEBUG - com.today36524.api.user.service.UserService 1.0.0 login Optional.empty request header:Optional.empty body:login_args(LoginUserRequest(today36524,13345678901))
+01-03 20:45:24 906 trans-pool-1-thread-4 DEBUG - SQL Preparing: 
+       select
+       user_name as userName,
+       telephone,
+       status,
+       integral,
+       unix_timestamp(created_at) as createdAt,
+       unix_timestamp(updated_at) as updatedAt,
+       email,
+       qq
+       from user
+       where telephone=?
+        args: WrappedArray(JdbcValue(13345678901))
+01-03 20:45:24 928 trans-pool-1-thread-4 DEBUG - SQL result: 0
+01-03 20:45:24 929 trans-pool-1-thread-4 DEBUG - SQL Preparing: 
+       select
+       user_name as userName,
+       telephone,
+       status,
+       integral,
+       unix_timestamp(created_at) as createdAt,
+       unix_timestamp(updated_at) as updatedAt,
+       email,
+       qq
+       from user
+       where telephone=?
+         and password=?
+        args: WrappedArray(JdbcValue(13345678901), JdbcValue(today36524))
+01-03 20:45:24 956 trans-pool-1-thread-4 DEBUG - SQL result: 0
+01-03 20:45:24 961 trans-pool-1-thread-4 INFO - com.today36524.api.user.service.UserService 1.0.0 login operatorId:Optional.empty operatorName:Optional.empty response body:login_result(LoginUserResponse(lh3,13345678901,(1,已激活),0,1514967088,1514967173,Some(abc@123.com),Some(323456789)))
+01-03 20:45:24 961 trans-pool-1-thread-4 DEBUG - com.today36524.api.user.service.UserService 1.0.0 login Optional.empty response header:Optional.empty body:login_result(LoginUserResponse(lh3,13345678901,(1,已激活),0,1514967088,1514967173,Some(abc@123.com),Some(323456789)))

@@ -1,0 +1,108 @@
+12-25 14:29:33 272 main INFO - Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+12-25 14:29:33 280 main INFO - Client environment:host.name=hhtaichi21
+12-25 14:29:33 280 main INFO - Client environment:java.version=1.8.0_151
+12-25 14:29:33 281 main INFO - Client environment:java.vendor=Oracle Corporation
+12-25 14:29:33 289 main INFO - Client environment:java.home=/usr/lib/jvm/java-8-openjdk-amd64/jre
+12-25 14:29:33 290 main INFO - Client environment:java.class.path=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/cldrdata.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/icedtea-sound.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/jaccess.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/nashorn.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/sunec.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/zipfs.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/management-agent.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar:/home/lhscala/works/other/lihui/lihui-service/target/scala-2.12/test-classes:/home/lhscala/works/other/lihui/lihui-service/target/scala-2.12/classes:/home/lhscala/works/other/lihui/lihui-api/target/scala-2.12/test-classes:/home/lhscala/works/other/lihui/lihui-api/target/scala-2.12/classes:/home/lhscala/.ivy2/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar:/home/lhscala/.ivy2/cache/ch.qos.logback/logback-classic/jars/logback-classic-1.1.3.jar:/home/lhscala/.ivy2/cache/ch.qos.logback/logback-core/jars/logback-core-1.1.3.jar:/home/lhscala/.ivy2/cache/com.alibaba/druid/jars/druid-1.0.17.jar:/home/lhscala/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/bundles/jackson-annotations-2.6.0.jar:/home/lhscala/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/bundles/jackson-core-2.6.2.jar:/home/lhscala/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/bundles/jackson-databind-2.6.2.jar:/home/lhscala/.ivy2/cache/com.github.wangzaixiang/scala-sql_2.12/jars/scala-sql_2.12-2.0.0.jar:/home/lhscala/.ivy2/cache/com.google.code.gson/gson/jars/gson-2.3.1.jar:/home/lhscala/.ivy2/cache/com.isuwang/dapeng-core/jars/dapeng-core-1.3.0.jar:/home/lhscala/.ivy2/cache/com.isuwang/dapeng-registry-api/jars/dapeng-registry-api-1.3.0.jar:/home/lhscala/.ivy2/cache/com.isuwang/dapeng-registry-zookeeper/jars/dapeng-registry-zookeeper-1.3.0.jar:/home/lhscala/.ivy2/cache/com.isuwang/dapeng-remoting-api/jars/dapeng-remoting-api-1.3.0.jar:/home/lhscala/.ivy2/cache/com.isuwang/dapeng-remoting-netty/jars/dapeng-remoting-netty-1.3.0.jar:/home/lhscala/.ivy2/cache/com.isuwang/dapeng-route-api/jars/dapeng-route-api-1.3.0.jar:/home/lhscala/.ivy2/cache/com.isuwang/dapeng-route-impl/jars/dapeng-route-impl-1.3.0.jar:/home/lhscala/.ivy2/cache/com.isuwang/dapeng-spring/jars/dapeng-spring-1.3.0.jar:/home/lhscala/.ivy2/cache/com.isuwang/dapeng-transaction-api/jars/dapeng-transaction-api-1.3.0.jar:/home/lhscala/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.2.jar:/home/lhscala/.ivy2/cache/io.netty/netty-all/jars/netty-all-4.1.6.Final.jar:/home/lhscala/.ivy2/cache/jline/jline/jars/jline-0.9.94.jar:/home/lhscala/.ivy2/cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.36.jar:/home/lhscala/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.1.jar:/home/lhscala/.ivy2/cache/org.apache.zookeeper/zookeeper/jars/zookeeper-3.4.7.jar:/home/lhscala/.ivy2/cache/org.codehaus.janino/commons-compiler/jars/commons-compiler-2.7.8.jar:/home/lhscala/.ivy2/cache/org.codehaus.janino/janino/jars/janino-2.7.8.jar:/home/lhscala/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.4.jar:/home/lhscala/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.13.jar:/home/lhscala/.ivy2/cache/org.springframework/spring-aop/jars/spring-aop-4.2.4.RELEASE.jar:/home/lhscala/.ivy2/cache/org.springframework/spring-beans/jars/spring-beans-4.2.4.RELEASE.jar:/home/lhscala/.ivy2/cache/org.springframework/spring-context/jars/spring-context-4.2.4.RELEASE.jar:/home/lhscala/.ivy2/cache/org.springframework/spring-core/jars/spring-core-4.2.4.RELEASE.jar:/home/lhscala/.ivy2/cache/org.springframework/spring-expression/jars/spring-expression-4.2.4.RELEASE.jar:/home/lhscala/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.4.jar:/usr/tool/idea-IC-173.3942.27/lib/idea_rt.jar
+12-25 14:29:33 290 main INFO - Client environment:java.library.path=/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+12-25 14:29:33 290 main INFO - Client environment:java.io.tmpdir=/tmp
+12-25 14:29:33 290 main INFO - Client environment:java.compiler=<NA>
+12-25 14:29:33 291 main INFO - Client environment:os.name=Linux
+12-25 14:29:33 291 main INFO - Client environment:os.arch=amd64
+12-25 14:29:33 291 main INFO - Client environment:os.version=4.10.0-42-generic
+12-25 14:29:33 291 main INFO - Client environment:user.name=lhscala
+12-25 14:29:33 291 main INFO - Client environment:user.home=/home/lhscala
+12-25 14:29:33 291 main INFO - Client environment:user.dir=/home/lhscala/works/other/lihui
+12-25 14:29:33 296 main INFO - Initiating client connection, connectString=127.0.0.1:2181 sessionTimeout=15000 watcher=com.isuwang.dapeng.registry.zookeeper.ZookeeperWatcher$$Lambda$8/863125040@7a30d1e6
+12-25 14:29:33 302 main DEBUG - zookeeper.disableAutoWatchReset is false
+12-25 14:29:33 372 main-SendThread(127.0.0.1:2181) INFO - Opening socket connection to server 127.0.0.1/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)
+12-25 14:29:33 386 main-SendThread(127.0.0.1:2181) INFO - Socket connection established to 127.0.0.1/127.0.0.1:2181, initiating session
+12-25 14:29:33 389 main-SendThread(127.0.0.1:2181) DEBUG - Session establishment request sent on 127.0.0.1/127.0.0.1:2181
+12-25 14:29:33 544 main-SendThread(127.0.0.1:2181) INFO - Session establishment complete on server 127.0.0.1/127.0.0.1:2181, sessionid = 0x1608b6d1330000c, negotiated timeout = 15000
+12-25 14:29:33 546 main-EventThread INFO - Client's Zookeeper Watcher 已连接 zookeeper Server
+12-25 14:29:33 567 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 1,3  replyHeader:: 1,41,0  request:: '/soa,F  response:: s{3,3,1514167788132,1514167788132,0,3,0,0,0,3,8} 
+12-25 14:29:33 571 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 2,3  replyHeader:: 2,41,0  request:: '/soa,F  response:: s{3,3,1514167788132,1514167788132,0,3,0,0,0,3,8} 
+12-25 14:29:33 581 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 3,3  replyHeader:: 3,41,0  request:: '/soa/config,F  response:: s{7,7,1514167788147,1514167788147,0,2,0,0,17,2,12} 
+12-25 14:29:33 583 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 4,3  replyHeader:: 4,41,0  request:: '/soa/runtime,F  response:: s{8,8,1514167788148,1514167788148,0,1,0,0,21,1,11} 
+12-25 14:29:33 591 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 5,3  replyHeader:: 5,41,0  request:: '/soa/config/route,F  response:: s{10,10,1514167788154,1514167788154,0,0,0,0,17,0,10} 
+12-25 14:29:33 593 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 6,3  replyHeader:: 6,41,0  request:: '/soa/runtime/services,F  response:: s{11,11,1514167788154,1514167788154,0,1,0,0,21,1,17} 
+12-25 14:29:33 596 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 7,3  replyHeader:: 7,41,0  request:: '/soa,F  response:: s{3,3,1514167788132,1514167788132,0,3,0,0,0,3,8} 
+12-25 14:29:33 609 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:/soa/config/route serverPath:/soa/config/route finished:false header:: 8,4  replyHeader:: 8,41,0  request:: '/soa/config/route,T  response:: #2f736f612f636f6e6669672f726f757465,s{10,10,1514167788154,1514167788154,0,0,0,0,17,0,10} 
+12-25 14:29:33 614 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 9,8  replyHeader:: 9,41,0  request:: '/soa/config/service,T  response:: v{} 
+12-25 14:29:33 619 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 10,3  replyHeader:: 10,41,0  request:: '/soa/config,F  response:: s{7,7,1514167788147,1514167788147,0,2,0,0,17,2,12} 
+12-25 14:29:33 629 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 11,3  replyHeader:: 11,41,0  request:: '/soa/config/service,F  response:: s{12,12,1514167788162,1514167788162,0,0,0,0,19,0,12} 
+12-25 14:29:33 662 main INFO - com.isuwang.soa.hello.service.HelloService 1.0.0 sayHello request
+12-25 14:29:33 677 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 12,8  replyHeader:: 12,41,0  request:: '/soa/runtime/services/com.isuwang.soa.hello.service.HelloService,T  response:: v{'127.0.1.1:9095:1.0.0} 
+12-25 14:29:33 679 main INFO - 获取/soa/runtime/services/com.isuwang.soa.hello.service.HelloService的子节点成功
+12-25 14:29:33 680 main INFO - com.isuwang.soa.hello.service.HelloService   [127.0.1.1:9095:1.0.0]
+12-25 14:29:33 703 main-SendThread(127.0.0.1:2181) DEBUG - Reading reply sessionid:0x1608b6d1330000c, packet:: clientPath:null serverPath:null finished:false header:: 13,4  replyHeader:: 13,41,-101  request:: '/soa/config/service/com.isuwang.soa.hello.service.HelloService.1.0.0.sayHello.consumer,T  response::  
+12-25 14:29:33 726 main ERROR - KeeperErrorCode = NoNode for /soa/config/service/com.isuwang.soa.hello.service.HelloService.1.0.0.sayHello.consumer
+12-25 14:29:33 774 main DEBUG - Using SLF4J as the default logging framework
+12-25 14:29:33 783 main DEBUG - -Dio.netty.eventLoopThreads: 8
+12-25 14:29:33 827 main DEBUG - java.nio.Buffer.address: available
+12-25 14:29:33 829 main DEBUG - sun.misc.Unsafe.theUnsafe: available
+12-25 14:29:33 830 main DEBUG - sun.misc.Unsafe.copyMemory: available
+12-25 14:29:33 831 main DEBUG - direct buffer constructor: available
+12-25 14:29:33 833 main DEBUG - java.nio.Bits.unaligned: available, true
+12-25 14:29:33 833 main DEBUG - java.nio.DirectByteBuffer.<init>(long, int): available
+12-25 14:29:33 835 main DEBUG - java.nio.ByteBuffer.cleaner(): available
+12-25 14:29:33 836 main DEBUG - Java version: 8
+12-25 14:29:33 837 main DEBUG - -Dio.netty.noUnsafe: false
+12-25 14:29:33 837 main DEBUG - sun.misc.Unsafe: available
+12-25 14:29:33 838 main DEBUG - -Dio.netty.noJavassist: false
+12-25 14:29:33 839 main DEBUG - Javassist: unavailable
+12-25 14:29:33 839 main DEBUG - You don't have Javassist in your class path or you don't have enough permission to load dynamically generated classes.  Please check the configuration for better performance.
+12-25 14:29:33 840 main DEBUG - -Dio.netty.tmpdir: /tmp (java.io.tmpdir)
+12-25 14:29:33 840 main DEBUG - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+12-25 14:29:33 840 main DEBUG - -Dio.netty.noPreferDirect: false
+12-25 14:29:33 841 main DEBUG - io.netty.maxDirectMemory: 894959616 bytes
+12-25 14:29:33 878 main DEBUG - -Dio.netty.noKeySetOptimization: false
+12-25 14:29:33 879 main DEBUG - -Dio.netty.selectorAutoRebuildThreshold: 512
+12-25 14:29:33 881 main DEBUG - org.jctools-core.MpscChunkedArrayQueue: available
+12-25 14:29:33 926 main DEBUG - -Dio.netty.allocator.numHeapArenas: 8
+12-25 14:29:33 926 main DEBUG - -Dio.netty.allocator.numDirectArenas: 8
+12-25 14:29:33 927 main DEBUG - -Dio.netty.allocator.pageSize: 8192
+12-25 14:29:33 930 main DEBUG - -Dio.netty.allocator.maxOrder: 11
+12-25 14:29:33 930 main DEBUG - -Dio.netty.allocator.chunkSize: 16777216
+12-25 14:29:33 930 main DEBUG - -Dio.netty.allocator.tinyCacheSize: 512
+12-25 14:29:33 931 main DEBUG - -Dio.netty.allocator.smallCacheSize: 256
+12-25 14:29:33 931 main DEBUG - -Dio.netty.allocator.normalCacheSize: 64
+12-25 14:29:33 931 main DEBUG - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+12-25 14:29:33 931 main DEBUG - -Dio.netty.allocator.cacheTrimInterval: 8192
+12-25 14:29:33 983 main DEBUG - -Dio.netty.processId: 21434 (auto-detected)
+12-25 14:29:33 987 main DEBUG - -Djava.net.preferIPv4Stack: false
+12-25 14:29:33 987 main DEBUG - -Djava.net.preferIPv6Addresses: false
+12-25 14:29:33 989 main DEBUG - Loopback interface: lo (lo, 0:0:0:0:0:0:0:1%lo)
+12-25 14:29:33 991 main DEBUG - /proc/sys/net/core/somaxconn: 128
+12-25 14:29:33 995 main DEBUG - -Dio.netty.machineId: c8:f7:33:ff:fe:85:87:70 (auto-detected)
+12-25 14:29:33 999 main DEBUG - -Dio.netty.initialSeedUniquifier: 0xecdf3d854aa961d5
+12-25 14:29:34 017 main DEBUG - -Dio.netty.leakDetection.level: simple
+12-25 14:29:34 017 main DEBUG - -Dio.netty.leakDetection.maxRecords: 4
+12-25 14:29:34 054 main DEBUG - -Dio.netty.allocator.type: pooled
+12-25 14:29:34 056 main DEBUG - -Dio.netty.threadLocalDirectBufferSize: 65536
+12-25 14:29:34 057 main DEBUG - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+12-25 14:29:34 137 main DEBUG - -Dio.netty.buffer.bytebuf.checkAccessible: true
+12-25 14:29:34 140 main DEBUG - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@79924b
+12-25 14:29:34 154 main DEBUG - -Dio.netty.recycler.maxCapacityPerThread: 32768
+12-25 14:29:34 154 main DEBUG - -Dio.netty.recycler.maxSharedCapacityFactor: 2
+12-25 14:29:34 154 main DEBUG - -Dio.netty.recycler.linkCapacity: 16
+12-25 14:29:34 154 main DEBUG - -Dio.netty.recycler.ratio: 8
+12-25 14:29:34 158 main INFO - com.isuwang.soa.hello.service.HelloService 1.0.0 sayHello callee: 127.0.1.1:9095 response respCode:Optional.empty time:495ms
+12-25 14:29:38 708 main-SendThread(127.0.0.1:2181) DEBUG - Got ping response for sessionid: 0x1608b6d1330000c after 1ms
+12-25 14:29:39 750 Check Async Timeout Thread INFO - 异步任务(1)超时...
+12-25 14:29:39 754 Check Async Timeout Thread ERROR - Check Async Timeout Thread Error
+java.lang.NullPointerException: null
+	at com.isuwang.dapeng.remoting.netty.SoaClient.checkAsyncTimeout(SoaClient.java:234) ~[dapeng-remoting-netty-1.3.0.jar:na]
+	at com.isuwang.dapeng.remoting.netty.SoaClient.access$100(SoaClient.java:29) ~[dapeng-remoting-netty-1.3.0.jar:na]
+	at com.isuwang.dapeng.remoting.netty.SoaClient$2.run(SoaClient.java:215) ~[dapeng-remoting-netty-1.3.0.jar:na]
+12-25 14:29:43 713 main-SendThread(127.0.0.1:2181) DEBUG - Got ping response for sessionid: 0x1608b6d1330000c after 1ms
+12-25 14:29:44 164 nioEventLoopGroup-2-1 DEBUG - 写超时，发送心跳包
+12-25 14:29:48 718 main-SendThread(127.0.0.1:2181) DEBUG - Got ping response for sessionid: 0x1608b6d1330000c after 1ms
+12-25 14:29:53 723 main-SendThread(127.0.0.1:2181) DEBUG - Got ping response for sessionid: 0x1608b6d1330000c after 1ms
+12-25 14:29:54 164 nioEventLoopGroup-2-1 DEBUG - 写超时，发送心跳包
+12-25 14:29:58 727 main-SendThread(127.0.0.1:2181) DEBUG - Got ping response for sessionid: 0x1608b6d1330000c after 1ms
+12-25 14:30:03 731 main-SendThread(127.0.0.1:2181) DEBUG - Got ping response for sessionid: 0x1608b6d1330000c after 2ms
+12-25 14:30:04 166 nioEventLoopGroup-2-1 DEBUG - 写超时，发送心跳包
+12-25 14:30:08 736 main-SendThread(127.0.0.1:2181) DEBUG - Got ping response for sessionid: 0x1608b6d1330000c after 1ms
+12-25 14:30:13 741 main-SendThread(127.0.0.1:2181) DEBUG - Got ping response for sessionid: 0x1608b6d1330000c after 1ms
+12-25 14:30:14 170 nioEventLoopGroup-2-1 DEBUG - 写超时，发送心跳包
