@@ -27,6 +27,13 @@ package com.today36524.api.user.request
 
         **/
         
-        qq : String
+        qq : String, /**
+        *
+
+ 用户电话号
+
+        **/
+        
+        telephone : String
         )
       
