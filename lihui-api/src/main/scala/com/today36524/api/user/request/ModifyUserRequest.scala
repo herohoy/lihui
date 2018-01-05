@@ -30,10 +30,10 @@ package com.today36524.api.user.request
         qq : String, /**
         *
 
- 用户电话号
+ 用户id
 
         **/
         
-        telephone : String
+        userId : String
         )
       

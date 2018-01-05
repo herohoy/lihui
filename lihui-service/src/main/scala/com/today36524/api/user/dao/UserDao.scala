@@ -94,9 +94,8 @@ class UserDao {
     //获取用户当前积分和id
     val nowusr = dataSource.row[Row](
       sql"""
-           select id,integral,email,qq from user where telephone=${mdRequest.telephone}
+           select integral,email,qq from user where id=${mdRequest.userId}
          """).get
-    val uid = nowusr.cell("id").getInt
     val intgr = nowusr.cell("integral").getInt
     val eml = nowusr.cell("email").getString
     val qq = nowusr.cell("qq").getString
@@ -107,14 +106,14 @@ class UserDao {
       dataSource.executeUpdate(
         sql"""
          update user set email = ${mdRequest.email}, qq = ${mdRequest.qq}, status = 2,
-         integral = $intgr + 5 where telephone=${mdRequest.telephone}
+         integral = $intgr + 5 where id=${mdRequest.userId}
            """)
 
       //添加积分流水
       dataSource.executeUpdate(sql"""
          insert into integral_journal set
-            user_id = $uid, integral_type = 1, integral_price = 5, integral_source = 1,
-            integral = $intgr + 5,
+            user_id = ${mdRequest.userId}, integral_type = 1, integral_price = 5,
+            integral_source = 1, integral = $intgr + 5,
             created_at = CURRENT_TIMESTAMP, created_by = 2000000001,
             updated_at = CURRENT_TIMESTAMP, updated_by = 2000000001, remark = ''
            """)
@@ -124,7 +123,7 @@ class UserDao {
     dataSource.row[Row](
       sql"""
            select user_name, telephone, status,updated_at, email, qq
-           from user where telephone=${mdRequest.telephone}
+           from user where id=${mdRequest.userId}
          """).get
   }
 

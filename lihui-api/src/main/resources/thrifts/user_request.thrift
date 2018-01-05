@@ -35,7 +35,7 @@ struct ModifyUserRequest {
     /**
     * 用户id
     **/
-    3: string telephone,
+    3: string userId,
 }
 
 /**

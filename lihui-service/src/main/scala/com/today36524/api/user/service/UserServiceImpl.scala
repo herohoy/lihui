@@ -79,9 +79,6 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
     **/
   override def modifyUser(request: ModifyUserRequest): ModifyUserResponse =
     {
-      assert(!(request.telephone==null || request.telephone.isEmpty),"手机号不能为空")
-      assert(CELL_REG.pattern.matcher(request.telephone).matches,
-        "手机号不符合规范")
       assert(!(request.email==null || request.email.isEmpty),"邮箱不能为空")
       assert(MAIL_REG.pattern.matcher(request.email).matches,
         "邮箱不符合规范")
@@ -89,9 +86,9 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
       assert(QQ_REG.pattern.matcher(request.qq).matches,
         "QQ号不符合规范")
 
-      val status = userDao.getUserStatusByPhone(request.telephone)
-      //使用手机号判断用户是否存在
-      assert(status.isInstanceOf[Some[Int]],"手机号未注册")
+      val status = userDao.getUserStatus(request.userId)
+      //使用id判断用户是否存在
+      assert(status.isInstanceOf[Some[Int]],"用户不存在")
 
       assert(UserStatusEnum(status.get)!=UserStatusEnum.UNDEFINED,
         "该用户状态未知，请联系管理员")
@@ -172,42 +169,6 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
       val r = userDao.updateUserUnfreeze(request)
       UnfreezeUserResponse(r.userId,UserStatusEnum(r.status),r.remark)
     }
-
-  /**
-  ### 用户注册
-    **/
-  override def registerUserSql(request: RegisterUserRequest): RegisterUserSqlResponse
-  = ??? //userDao.addUserForRegister(request)
-
-  /**
-  ### 用户登录
-    **/
-  override def loginSql(request: LoginUserRequest): LoginUserSqlResponse
-  = ???
-
-  /**
-    * ### 用户修改个人资料
-    **/
-  override def modifyUserSql(request: ModifyUserRequest): ModifyUserSqlResponse =
-    ???
-
-  /**
-    * ### 冻结用户接口
-    **/
-  override def freezeUserSql(request: FreezeUserRequest): FreezeUserSqlResponse =
-    ??? //userDao.updateUserFreeze(request)
-
-  /**
-    * ### 拉黑用户接口
-    **/
-  override def blackUserSql(request: BlackUserRequest): BlackUserSqlResponse =
-    ??? //userDao.updateUserBlack(request)
-
-  /**
-    * ### 解冻用户接口
-    **/
-  override def unfreezeUserSql(request: UnfreezeUserRequest): UnfreezeUserSqlResponse =
-    ??? //userDao.updateUserUnfreeze(request)
 
 
 }
