@@ -39,8 +39,10 @@ class UserServiceImpl extends UserService {
     //密码加密处理过程 TODO
 
       val res = userDao.addUserForRegister(request)
-      RegisterUserResponse(res.userName,res.telephone
-        ,UserStatusEnum(res.status),res.createdAt)
+      RegisterUserResponse(res.cell("user_name").getString,
+        res.cell("telephone").getString,
+        UserStatusEnum(res.cell("status").getInt),
+        res.cell("created_at").getDate.getTime)
   }
 
   /**
@@ -58,15 +60,17 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
   //登录
   val u = userDao.authUser(request).getOrElse(throw new SoaException("","密码不正确"))
 
-  assert(!UserStatusEnum(u.status).eq(UserStatusEnum.UNDEFINED),
+  assert(UserStatusEnum(u.cell("status").getInt)!=UserStatusEnum.UNDEFINED,
     "该用户状态未知，请联系管理员")
-  assert(!UserStatusEnum(u.status).eq(UserStatusEnum.DELETE),
+  assert(UserStatusEnum(u.cell("status").getInt)!=UserStatusEnum.DELETE,
     "该用户已被删除，请联系管理员")
-  assert(!UserStatusEnum(u.status).eq(UserStatusEnum.BLACK),
+  assert(UserStatusEnum(u.cell("status").getInt)!=UserStatusEnum.BLACK,
     "该用户已被列入黑名单，请联系管理员")
 
-  LoginUserResponse(u.userName,u.telephone,UserStatusEnum(u.status)
-  ,u.integral,u.createdAt,u.updatedAt,u.email,u.qq)
+  LoginUserResponse(u.cell("user_name").getString,u.cell("telephone").getString,
+    UserStatusEnum(u.cell("status").getInt),u.cell("integral").getInt,
+    u.cell("created_at").getLong,u.cell("updated_at").getLong,
+    Option(u.cell("email").getString),Option(u.cell("qq").getString))
 
 }
 
@@ -89,19 +93,19 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
       //使用手机号判断用户是否存在
       assert(status.isInstanceOf[Some[Int]],"手机号未注册")
 
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.UNDEFINED),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.UNDEFINED,
         "该用户状态未知，请联系管理员")
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.DELETE),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.DELETE,
         "该用户已被删除，请联系管理员")
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.BLACK),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.BLACK,
         "该用户已被列入黑名单，请联系管理员")
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.FREEZED),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.FREEZED,
         "该用户已被冻结，请联系管理员")
 
       val r = userDao.updateUserForIntegral(request)
-      ModifyUserResponse(r.userName,r.telephone
-      ,UserStatusEnum(r.status),r.updatedAt
-      ,r.email,r.qq)
+      ModifyUserResponse(r.cell("user_name").getString,r.cell("telephone").getString,
+        UserStatusEnum(r.cell("status").getInt),r.cell("updated_at").getDate.getTime,
+        Option(r.cell("email").getString),Option(r.cell("qq").getString))
     }
 
   /**
@@ -112,13 +116,13 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
       val status = userDao.getUserStatus(request.userId)
       assert(status.isInstanceOf[Some[Int]],"用户不存在")
 
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.UNDEFINED),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.UNDEFINED,
         "该用户状态未知，请联系管理员")
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.DELETE),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.DELETE,
         "该用户已被删除，请联系管理员")
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.BLACK),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.BLACK,
         "该用户已被列入黑名单，请联系管理员")
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.FREEZED),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.FREEZED,
         "该用户已被冻结，请联系管理员")
 
       val r = userDao.updateUserFreeze(request)
@@ -133,11 +137,11 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
       val status = userDao.getUserStatus(request.userId)
       assert(status.isInstanceOf[Some[Int]],"用户不存在")
 
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.UNDEFINED),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.UNDEFINED,
         "该用户状态未知，请联系管理员")
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.DELETE),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.DELETE,
         "该用户已被删除，请联系管理员")
-      assert(!UserStatusEnum(status.get).eq(UserStatusEnum.BLACK),
+      assert(UserStatusEnum(status.get)!=UserStatusEnum.BLACK,
         "该用户已被列入黑名单，请联系管理员")
 
       val r = userDao.updateUserBlack(request)
@@ -162,7 +166,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
       val status = userDao.getUserStatus(request.userId)
       assert(status.isInstanceOf[Some[Int]],"用户不存在")
 
-      assert(UserStatusEnum(status.get).eq(UserStatusEnum.FREEZED),
+      assert(UserStatusEnum(status.get)==UserStatusEnum.FREEZED,
         "该用户并非处于冻结状态")
 
       val r = userDao.updateUserUnfreeze(request)

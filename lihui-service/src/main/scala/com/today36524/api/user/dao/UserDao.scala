@@ -24,10 +24,10 @@ class UserDao {
     val uid = dataSource.generateKey[Int](
       sql"""
          insert into user set
-         user_name = ${request.userName} ,password = ${request.passWord}
-         ,telephone = ${request.telephone} ,email = '' ,qq = '' ,integral = 0
-         ,created_at = CURRENT_TIMESTAMP ,created_by = 2000000001
-         ,updated_at = CURRENT_TIMESTAMP ,updated_by = 2000000001 ,remark = ''
+         user_name = ${request.userName} ,password = ${request.passWord},
+         telephone = ${request.telephone} ,email = '' ,qq = '' ,integral = 0,
+         created_at = CURRENT_TIMESTAMP ,created_by = 2000000001,
+         updated_at = CURRENT_TIMESTAMP ,updated_by = 2000000001 ,remark = ''
        """)
 
     //添加积分流水信息
@@ -40,11 +40,9 @@ class UserDao {
          """)
 
     //返回数据
-      dataSource.row[RegisterUserSqlResponse](
+      dataSource.row[Row](
         sql"""
-       select
-       user_name as userName telephone, status, unix_timestamp(created_at) as createdAt
-       from user
+       select user_name, telephone, status, created_at from user
        where telephone=${request.telephone}
        """).get
   }
@@ -76,18 +74,15 @@ class UserDao {
     * @param loginUser
     * @return
     */
-  def authUser(loginUser:LoginUserRequest) = {
-    dataSource.row[LoginUserSqlResponse](
+  def authUser(loginUser:LoginUserRequest) =
+    dataSource.row[Row](
       sql"""
       select
-       user_name as userName, telephone, status, integral,
-       unix_timestamp(created_at) as createdAt,
-       unix_timestamp(updated_at) as updatedAt, email, qq
+       user_name, telephone, status, integral,created_at,updated_at, email, qq
       from user
        where telephone=${loginUser.telephone}
          and password=${loginUser.passWord}
        """)
-  }
 
   /**
     * 完善用户信息并获得积分
@@ -126,10 +121,9 @@ class UserDao {
     }
 
     //返回数据
-    dataSource.row[ModifyUserSqlResponse](
+    dataSource.row[Row](
       sql"""
-           select user_name as userName , telephone, status,
-             unix_timestamp(updated_at) as updatedAt, email, qq
+           select user_name, telephone, status,updated_at, email, qq
            from user where telephone=${mdRequest.telephone}
          """).get
   }
