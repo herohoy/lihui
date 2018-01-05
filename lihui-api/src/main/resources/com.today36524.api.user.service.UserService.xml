@@ -1144,6 +1144,270 @@
         </method>
     </methods>
     <structs>
+        <struct namespace="com.today36524.api.user.response" name="UnfreezeUserSqlResponse">
+            <doc>
+
+ 解冻操作sql返回体
+</doc>
+            <fields>
+                <field tag="1" name="userId" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户 id
+</doc>
+                </field>
+                <field tag="2" name="status" optional="false" privacy="false">
+                    <dataType>
+                        <kind>INTEGER</kind>
+                    </dataType>
+                    <doc>
+
+ 用户状态
+</doc>
+                </field>
+                <field tag="3" name="remark" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+  操作员解冻备注
+</doc>
+                </field>
+            </fields>
+        </struct>
+        <struct namespace="com.today36524.api.user.request" name="ModifyUserRequest">
+            <doc>
+
+ 修改用户请求体(初始化修改时必填[积分相关]，之后修改选填)
+</doc>
+            <fields>
+                <field tag="1" name="email" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户邮箱
+</doc>
+                </field>
+                <field tag="2" name="qq" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户 qq
+</doc>
+                </field>
+                <field tag="3" name="telephone" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户id
+</doc>
+                </field>
+            </fields>
+        </struct>
+        <struct namespace="com.today36524.api.user.response" name="RegisterUserResponse">
+            <doc>
+
+ 注册用户返回体
+</doc>
+            <fields>
+                <field tag="1" name="userName" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户名称
+</doc>
+                </field>
+                <field tag="2" name="telephone" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 电话号码
+</doc>
+                </field>
+                <field tag="3" name="status" optional="false" privacy="false">
+                    <dataType>
+                        <kind>ENUM</kind>
+                        <ref>com.today36524.api.user.enums.UserStatusEnum</ref>
+                    </dataType>
+                    <doc>
+
+ 用户状态
+</doc>
+                </field>
+                <field tag="4" name="createdAt" optional="false" privacy="false">
+                    <dataType>
+                        <kind>LONG</kind>
+                    </dataType>
+                    <doc>
+
+ 注册时间
+</doc>
+                </field>
+            </fields>
+        </struct>
+        <struct namespace="com.today36524.api.user.response" name="UnfreezeUserResponse">
+            <doc>
+
+ 解冻操作返回体
+</doc>
+            <fields>
+                <field tag="1" name="userId" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户 id
+</doc>
+                </field>
+                <field tag="2" name="status" optional="false" privacy="false">
+                    <dataType>
+                        <kind>ENUM</kind>
+                        <ref>com.today36524.api.user.enums.UserStatusEnum</ref>
+                    </dataType>
+                    <doc>
+
+ 用户状态
+</doc>
+                </field>
+                <field tag="3" name="remark" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+  操作员解冻备注
+</doc>
+                </field>
+            </fields>
+        </struct>
+        <struct namespace="com.today36524.api.user.request" name="FreezeUserRequest">
+            <doc>
+
+ 冻结操作请求体
+</doc>
+            <fields>
+                <field tag="1" name="userId" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户 id
+</doc>
+                </field>
+                <field tag="2" name="remark" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+  操作员冻结备注
+</doc>
+                </field>
+            </fields>
+        </struct>
+        <struct namespace="com.today36524.api.user.request" name="UnfreezeUserRequest">
+            <doc>
+
+ 解冻操作请求体
+</doc>
+            <fields>
+                <field tag="1" name="userId" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户 id
+</doc>
+                </field>
+                <field tag="2" name="remark" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+  操作员解冻备注
+</doc>
+                </field>
+            </fields>
+        </struct>
+        <struct namespace="com.today36524.api.user.request" name="BlackUserRequest">
+            <doc>
+
+ 拉黑操作请求体
+</doc>
+            <fields>
+                <field tag="1" name="userId" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户 id
+</doc>
+                </field>
+                <field tag="2" name="remark" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+  操作员拉黑备注
+</doc>
+                </field>
+            </fields>
+        </struct>
+        <struct namespace="com.today36524.api.user.request" name="RegisterUserRequest">
+            <doc>
+
+ 注册用户请求体
+</doc>
+            <fields>
+                <field tag="1" name="userName" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户名称
+</doc>
+                </field>
+                <field tag="2" name="passWord" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 密码
+</doc>
+                </field>
+                <field tag="3" name="telephone" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 电话号码
+</doc>
+                </field>
+            </fields>
+        </struct>
         <struct namespace="com.today36524.api.user.response" name="ModifyUserResponse">
             <doc>
 
@@ -1207,6 +1471,32 @@
                 </field>
             </fields>
         </struct>
+        <struct namespace="com.today36524.api.user.request" name="LoginUserRequest">
+            <doc>
+
+ 用户登录请求体
+</doc>
+            <fields>
+                <field tag="1" name="passWord" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 密码
+</doc>
+                </field>
+                <field tag="2" name="telephone" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 电话号码
+</doc>
+                </field>
+            </fields>
+        </struct>
         <struct namespace="com.today36524.api.user.response" name="FreezeUserResponse">
             <doc>
 
@@ -1226,308 +1516,6 @@
                     <dataType>
                         <kind>ENUM</kind>
                         <ref>com.today36524.api.user.enums.UserStatusEnum</ref>
-                    </dataType>
-                    <doc>
-
- 用户状态
-</doc>
-                </field>
-                <field tag="3" name="remark" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
-  操作员冻结备注
-</doc>
-                </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.response" name="FreezeUserSqlResponse">
-            <doc>
-
- 冻结操作sql返回体
-</doc>
-            <fields>
-                <field tag="1" name="userId" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户 id
-</doc>
-                </field>
-                <field tag="2" name="status" optional="false" privacy="false">
-                    <dataType>
-                        <kind>INTEGER</kind>
-                    </dataType>
-                    <doc>
-
- 用户状态
-</doc>
-                </field>
-                <field tag="3" name="remark" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
-  操作员冻结备注
-</doc>
-                </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.request" name="FreezeUserRequest">
-            <doc>
-
- 冻结操作请求体
-</doc>
-            <fields>
-                <field tag="1" name="userId" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户 id
-</doc>
-                </field>
-                <field tag="2" name="remark" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
-  操作员冻结备注
-</doc>
-                </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.response" name="RegisterUserResponse">
-            <doc>
-
- 注册用户返回体
-</doc>
-            <fields>
-                <field tag="1" name="userName" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户名称
-</doc>
-                </field>
-                <field tag="2" name="telephone" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 电话号码
-</doc>
-                </field>
-                <field tag="3" name="status" optional="false" privacy="false">
-                    <dataType>
-                        <kind>ENUM</kind>
-                        <ref>com.today36524.api.user.enums.UserStatusEnum</ref>
-                    </dataType>
-                    <doc>
-
- 用户状态
-</doc>
-                </field>
-                <field tag="4" name="createdAt" optional="false" privacy="false">
-                    <dataType>
-                        <kind>LONG</kind>
-                    </dataType>
-                    <doc>
-
- 注册时间
-</doc>
-                </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.response" name="RegisterUserSqlResponse">
-            <doc>
-
- 注册用户sql返回体
-</doc>
-            <fields>
-                <field tag="1" name="userName" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户名称
-</doc>
-                </field>
-                <field tag="2" name="telephone" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 电话号码
-</doc>
-                </field>
-                <field tag="3" name="status" optional="false" privacy="false">
-                    <dataType>
-                        <kind>INTEGER</kind>
-                    </dataType>
-                    <doc>
-
- 用户状态
-</doc>
-                </field>
-                <field tag="4" name="createdAt" optional="false" privacy="false">
-                    <dataType>
-                        <kind>LONG</kind>
-                    </dataType>
-                    <doc>
-
- 注册时间
-</doc>
-                </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.request" name="ChangeIntegralRequest">
-            <doc>
-
- 记录请求流水接口
-</doc>
-            <fields>
-                <field tag="1" name="userId" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户 id
-</doc>
-                </field>
-                <field tag="2" name="integralPrice" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
-  该流水涉及到的积分数(可正可负)
-</doc>
-                </field>
-                <field tag="3" name="integralType" optional="false" privacy="false">
-                    <dataType>
-                        <kind>ENUM</kind>
-                        <ref>com.today36524.api.user.enums.IntegralTypeEnum</ref>
-                    </dataType>
-                    <doc>
-
-  积分流水类型
-</doc>
-                </field>
-                <field tag="4" name="integralSource" optional="false" privacy="false">
-                    <dataType>
-                        <kind>ENUM</kind>
-                        <ref>com.today36524.api.user.enums.IntegralSourceEnum</ref>
-                    </dataType>
-                    <doc>
-
-  积分改变的来源
-</doc>
-                </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.request" name="RegisterUserRequest">
-            <doc>
-
- 注册用户请求体
-</doc>
-            <fields>
-                <field tag="1" name="userName" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户名称
-</doc>
-                </field>
-                <field tag="2" name="passWord" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 密码
-</doc>
-                </field>
-                <field tag="3" name="telephone" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 电话号码
-</doc>
-                </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.response" name="BlackUserResponse">
-            <doc>
-
- 拉黑操作返回体
-</doc>
-            <fields>
-                <field tag="1" name="userId" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户 id
-</doc>
-                </field>
-                <field tag="2" name="status" optional="false" privacy="false">
-                    <dataType>
-                        <kind>ENUM</kind>
-                        <ref>com.today36524.api.user.enums.UserStatusEnum</ref>
-                    </dataType>
-                    <doc>
-
- 用户状态
-</doc>
-                </field>
-                <field tag="3" name="remark" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
-  操作员冻结备注
-</doc>
-                </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.response" name="BlackUserSqlResponse">
-            <doc>
-
- 拉黑操作sql返回体
-</doc>
-            <fields>
-                <field tag="1" name="userId" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户 id
-</doc>
-                </field>
-                <field tag="2" name="status" optional="false" privacy="false">
-                    <dataType>
-                        <kind>INTEGER</kind>
                     </dataType>
                     <doc>
 
@@ -1625,10 +1613,46 @@
                 </field>
             </fields>
         </struct>
-        <struct namespace="com.today36524.api.user.response" name="UnfreezeUserSqlResponse">
+        <struct namespace="com.today36524.api.user.response" name="BlackUserResponse">
             <doc>
 
- 解冻操作sql返回体
+ 拉黑操作返回体
+</doc>
+            <fields>
+                <field tag="1" name="userId" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+ 用户 id
+</doc>
+                </field>
+                <field tag="2" name="status" optional="false" privacy="false">
+                    <dataType>
+                        <kind>ENUM</kind>
+                        <ref>com.today36524.api.user.enums.UserStatusEnum</ref>
+                    </dataType>
+                    <doc>
+
+ 用户状态
+</doc>
+                </field>
+                <field tag="3" name="remark" optional="false" privacy="false">
+                    <dataType>
+                        <kind>STRING</kind>
+                    </dataType>
+                    <doc>
+
+  操作员冻结备注
+</doc>
+                </field>
+            </fields>
+        </struct>
+        <struct namespace="com.today36524.api.user.response" name="BlackUserSqlResponse">
+            <doc>
+
+ 拉黑操作sql返回体
 </doc>
             <fields>
                 <field tag="1" name="userId" optional="false" privacy="false">
@@ -1655,68 +1679,88 @@
                     </dataType>
                     <doc>
 
-  操作员解冻备注
+  操作员冻结备注
 </doc>
                 </field>
             </fields>
         </struct>
-        <struct namespace="com.today36524.api.user.request" name="LoginUserRequest">
+        <struct namespace="com.today36524.api.user.response" name="FreezeUserSqlResponse">
             <doc>
 
- 用户登录请求体
+ 冻结操作sql返回体
 </doc>
             <fields>
-                <field tag="1" name="passWord" optional="false" privacy="false">
+                <field tag="1" name="userId" optional="false" privacy="false">
                     <dataType>
                         <kind>STRING</kind>
                     </dataType>
                     <doc>
 
- 密码
+ 用户 id
 </doc>
                 </field>
-                <field tag="2" name="telephone" optional="false" privacy="false">
+                <field tag="2" name="status" optional="false" privacy="false">
+                    <dataType>
+                        <kind>INTEGER</kind>
+                    </dataType>
+                    <doc>
+
+ 用户状态
+</doc>
+                </field>
+                <field tag="3" name="remark" optional="false" privacy="false">
                     <dataType>
                         <kind>STRING</kind>
                     </dataType>
                     <doc>
 
- 电话号码
+  操作员冻结备注
 </doc>
                 </field>
             </fields>
         </struct>
-        <struct namespace="com.today36524.api.user.request" name="ModifyUserRequest">
+        <struct namespace="com.today36524.api.user.request" name="ChangeIntegralRequest">
             <doc>
 
- 修改用户请求体(初始化修改时必填[积分相关]，之后修改选填)
+ 记录请求流水接口
 </doc>
             <fields>
-                <field tag="1" name="email" optional="false" privacy="false">
+                <field tag="1" name="userId" optional="false" privacy="false">
                     <dataType>
                         <kind>STRING</kind>
                     </dataType>
                     <doc>
 
- 用户邮箱
+ 用户 id
 </doc>
                 </field>
-                <field tag="2" name="qq" optional="false" privacy="false">
+                <field tag="2" name="integralPrice" optional="false" privacy="false">
                     <dataType>
                         <kind>STRING</kind>
                     </dataType>
                     <doc>
 
- 用户 qq
+  该流水涉及到的积分数(可正可负)
 </doc>
                 </field>
-                <field tag="3" name="telephone" optional="false" privacy="false">
+                <field tag="3" name="integralType" optional="false" privacy="false">
                     <dataType>
-                        <kind>STRING</kind>
+                        <kind>ENUM</kind>
+                        <ref>com.today36524.api.user.enums.IntegralTypeEnum</ref>
                     </dataType>
                     <doc>
 
- 用户电话号
+  积分流水类型
+</doc>
+                </field>
+                <field tag="4" name="integralSource" optional="false" privacy="false">
+                    <dataType>
+                        <kind>ENUM</kind>
+                        <ref>com.today36524.api.user.enums.IntegralSourceEnum</ref>
+                    </dataType>
+                    <doc>
+
+  积分改变的来源
 </doc>
                 </field>
             </fields>
@@ -1802,90 +1846,46 @@
                 </field>
             </fields>
         </struct>
-        <struct namespace="com.today36524.api.user.request" name="BlackUserRequest">
+        <struct namespace="com.today36524.api.user.response" name="RegisterUserSqlResponse">
             <doc>
 
- 拉黑操作请求体
+ 注册用户sql返回体
 </doc>
             <fields>
-                <field tag="1" name="userId" optional="false" privacy="false">
+                <field tag="1" name="userName" optional="false" privacy="false">
                     <dataType>
                         <kind>STRING</kind>
                     </dataType>
                     <doc>
 
- 用户 id
+ 用户名称
 </doc>
                 </field>
-                <field tag="2" name="remark" optional="false" privacy="false">
+                <field tag="2" name="telephone" optional="false" privacy="false">
                     <dataType>
                         <kind>STRING</kind>
                     </dataType>
                     <doc>
 
-  操作员拉黑备注
+ 电话号码
 </doc>
                 </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.request" name="UnfreezeUserRequest">
-            <doc>
-
- 解冻操作请求体
-</doc>
-            <fields>
-                <field tag="1" name="userId" optional="false" privacy="false">
+                <field tag="3" name="status" optional="false" privacy="false">
                     <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户 id
-</doc>
-                </field>
-                <field tag="2" name="remark" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
-  操作员解冻备注
-</doc>
-                </field>
-            </fields>
-        </struct>
-        <struct namespace="com.today36524.api.user.response" name="UnfreezeUserResponse">
-            <doc>
-
- 解冻操作返回体
-</doc>
-            <fields>
-                <field tag="1" name="userId" optional="false" privacy="false">
-                    <dataType>
-                        <kind>STRING</kind>
-                    </dataType>
-                    <doc>
-
- 用户 id
-</doc>
-                </field>
-                <field tag="2" name="status" optional="false" privacy="false">
-                    <dataType>
-                        <kind>ENUM</kind>
-                        <ref>com.today36524.api.user.enums.UserStatusEnum</ref>
+                        <kind>INTEGER</kind>
                     </dataType>
                     <doc>
 
  用户状态
 </doc>
                 </field>
-                <field tag="3" name="remark" optional="false" privacy="false">
+                <field tag="4" name="createdAt" optional="false" privacy="false">
                     <dataType>
-                        <kind>STRING</kind>
+                        <kind>LONG</kind>
                     </dataType>
                     <doc>
 
-  操作员解冻备注
+ 注册时间
 </doc>
                 </field>
             </fields>
@@ -1954,6 +1954,30 @@
         </struct>
     </structs>
     <enums>
+        <tenum namespace="com.today36524.api.user.enums" name="IntegralSourceEnum">
+            <doc>
+
+ 积分来源
+</doc>
+            <items>
+                <item>
+                    <label>PREFECT_INFORMATION</label>
+                    <value>1</value>
+                    <doc>
+
+ 完善个人资料
+</doc>
+                </item>
+                <item>
+                    <label>BLACK</label>
+                    <value>2</value>
+                    <doc>
+
+ 拉黑
+</doc>
+                </item>
+            </items>
+        </tenum>
         <tenum namespace="com.today36524.api.user.enums" name="UserStatusEnum">
             <doc>
 
@@ -2006,30 +2030,6 @@
                     <doc>
 
  逻辑删除
-</doc>
-                </item>
-            </items>
-        </tenum>
-        <tenum namespace="com.today36524.api.user.enums" name="IntegralSourceEnum">
-            <doc>
-
- 积分来源
-</doc>
-            <items>
-                <item>
-                    <label>PREFECT_INFORMATION</label>
-                    <value>1</value>
-                    <doc>
-
- 完善个人资料
-</doc>
-                </item>
-                <item>
-                    <label>BLACK</label>
-                    <value>2</value>
-                    <doc>
-
- 拉黑
 </doc>
                 </item>
             </items>

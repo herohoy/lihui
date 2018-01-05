@@ -1,10 +1,7 @@
 package com.today36524.api.user.dao
 
-import java.sql.ResultSet
-
 import com.alibaba.druid.pool.DruidDataSource
-import com.isuwang.dapeng.core.SoaException
-import com.today36524.api.user.enums.{IntegralSourceEnum, IntegralTypeEnum}
+import com.today36524.api.user.enums.IntegralTypeEnum
 import com.today36524.api.user.request._
 import com.today36524.api.user.response._
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,114 +18,35 @@ class UserDao {
     * @param request 注册请求中包含的用户信息
     * @return 执行结果数字
     */
-  @throws(classOf[SoaException])
   def addUserForRegister(request: RegisterUserRequest)
   = {
-    dataSource.executeUpdate(
+    //添加用户表信息
+    val uid = dataSource.generateKey[Int](
       sql"""
-         insert into user
-         (
-         user_name
-         ,password
-         ,telephone
-         ,email
-         ,qq
-         ,integral
-         ,created_at
-         ,created_by
-         ,updated_at
-         ,updated_by
-         ,remark
-         ) values
-         (
-         ${request.userName}
-         ,${request.passWord}
-         ,${request.telephone}
-         ,''
-         ,''
-         ,0
-         ,CURRENT_TIMESTAMP
-         ,2000000001
-         ,CURRENT_TIMESTAMP
-         ,2000000001
-         ,''
-         )
+         insert into user set
+         user_name = ${request.userName} ,password = ${request.passWord}
+         ,telephone = ${request.telephone} ,email = '' ,qq = '' ,integral = 0
+         ,created_at = CURRENT_TIMESTAMP ,created_by = 2000000001
+         ,updated_at = CURRENT_TIMESTAMP ,updated_by = 2000000001 ,remark = ''
        """)
 
+    //添加积分流水信息
     dataSource.executeUpdate(
       sql"""
-           insert into integral_journal
-           (
-              user_id,
-                integral_type,
-                integral_price,
-                integral_source,
-                integral,
-                created_at,
-                created_by,
-                updated_at,
-                updated_by,
-                remark
-           )
-           select
-              id as user_id
-              ,1 as integral_type
-              ,0 as integral_price
-              ,1 as integral_source
-              ,0 as integral
-              ,CURRENT_TIMESTAMP as created_at
-               ,2000000001 as created_by
-               ,CURRENT_TIMESTAMP as updated_at
-               ,2000000001 as updated_by
-               ,'' as remark
-           from user where telephone=${request.telephone}
+           insert into integral_journal set
+              user_id = $uid, integral_type = 1, integral_price = 0, integral_source = 1,
+                integral = 0, created_at = CURRENT_TIMESTAMP, created_by = 2000000001,
+                updated_at = CURRENT_TIMESTAMP, updated_by = 2000000001, remark = ''
          """)
 
-    try{
+    //返回数据
       dataSource.row[RegisterUserSqlResponse](
         sql"""
        select
-       user_name as userName,
-       telephone,
-       status,
-       unix_timestamp(created_at) as createdAt
+       user_name as userName telephone, status, unix_timestamp(created_at) as createdAt
        from user
        where telephone=${request.telephone}
        """).get
-    }catch {
-      case e:NoSuchElementException =>
-        throw new SoaException("","用户注册失败")
-    }
-  }
-
-  /**
-    * 判断用户是否存在
-    * @param loginUser
-    * @throws SoaException
-    * @return
-    */
-  @deprecated("use getUserCountByPhone(userPhone:String) instead","1.0.1")
-  @throws(classOf[SoaException])
-  def getUserByPhone(loginUser:LoginUserRequest) ={
-    try{
-      dataSource.row[LoginUserSqlResponse](
-        sql"""
-       select
-       user_name as userName,
-       telephone,
-       status,
-       integral,
-       unix_timestamp(created_at) as createdAt,
-       unix_timestamp(updated_at) as updatedAt,
-       email,
-       qq
-       from user
-       where telephone=${loginUser.telephone}
-       """).get
-    }catch {
-      case e:NoSuchElementException =>
-        throw new SoaException("","未找到当前用户")
-    }
   }
 
   /**
@@ -139,41 +57,36 @@ class UserDao {
   def getUserCountByPhone(userPhone:String) =
     dataSource.row[Int](
       sql"""
-       select
-       count(id)
-       from user
-       where telephone=$userPhone
+       select count(1) from user where telephone=$userPhone
        """).get
 
+  /**
+    * 通过id判断用户是否存在，更好的方式，不会频繁抛异常
+    * @param id
+    * @return
+    */
+  def getUserCountById(id:String) =
+    dataSource.row[Int](
+      sql"""
+       select count(1) from user where id=$id
+       """).get
 
   /**
     * 用户登录验证
     * @param loginUser
-    * @throws SoaException
     * @return
     */
-  @throws(classOf[SoaException])
-  def authUser(loginUser:LoginUserRequest) ={
-    try{
+  def authUser(loginUser:LoginUserRequest) = {
     dataSource.row[LoginUserSqlResponse](
       sql"""
-       select
-       user_name as userName,
-       telephone,
-       status,
-       integral,
+      select
+       user_name as userName, telephone, status, integral,
        unix_timestamp(created_at) as createdAt,
-       unix_timestamp(updated_at) as updatedAt,
-       email,
-       qq
-       from user
+       unix_timestamp(updated_at) as updatedAt, email, qq
+      from user
        where telephone=${loginUser.telephone}
          and password=${loginUser.passWord}
-       """).get
-    }catch {
-      case e:NoSuchElementException =>
-        throw new SoaException("","密码不正确")
-    }
+       """)
   }
 
   /**
@@ -182,243 +95,172 @@ class UserDao {
     * @return
     */
   def updateUserForIntegral(mdRequest:ModifyUserRequest) = {
-//    val userId = dataSource.row[Int](
-//      sql"""
-//           select id from user where telephone=${mdRequest.telephone}
-//         """)
-    dataSource.executeUpdate(
-      sql"""
-           insert into integral_journal
-           (
-              user_id,
-                integral_type,
-                integral_price,
-                integral_source,
-                integral,
-                created_at,
-                created_by,
-                updated_at,
-                updated_by,
-                remark
-           )
-           select
-              id as user_id
-              ,1 as integral_type
-              ,5 as integral_price
-              ,1 as integral_source
-              ,integral as integral
-              ,CURRENT_TIMESTAMP as created_at
-               ,2000000001 as created_by
-               ,CURRENT_TIMESTAMP as updated_at
-               ,2000000001 as updated_by
-               ,'' as remark
-           from user where telephone=${mdRequest.telephone}
-         """)
-    dataSource.executeUpdate(
-      sql"""
-           update user set
-           email = ${mdRequest.email},
-           qq = ${mdRequest.qq},
-           integral = integral + 5
-           where telephone=${mdRequest.telephone}
-         """)
-    try{
 
+    //获取用户当前积分和id
+    val nowusr = dataSource.row[Row](
+      sql"""
+           select id,integral,email,qq from user where telephone=${mdRequest.telephone}
+         """).get
+    val uid = nowusr.cell("id").getInt
+    val intgr = nowusr.cell("integral").getInt
+    val eml = nowusr.cell("email").getString
+    val qq = nowusr.cell("qq").getString
+
+    //只有初始化（即email和qq都为空）时才会添加积分
+    if(eml.isEmpty && qq.isEmpty){
+      //更新用户积分
+      dataSource.executeUpdate(
+        sql"""
+         update user set email = ${mdRequest.email}, qq = ${mdRequest.qq}, status = 2,
+         integral = $intgr + 5 where telephone=${mdRequest.telephone}
+           """)
+
+      //添加积分流水
+      dataSource.executeUpdate(sql"""
+         insert into integral_journal set
+            user_id = $uid, integral_type = 1, integral_price = 5, integral_source = 1,
+            integral = $intgr + 5,
+            created_at = CURRENT_TIMESTAMP, created_by = 2000000001,
+            updated_at = CURRENT_TIMESTAMP, updated_by = 2000000001, remark = ''
+           """)
+    }
+
+    //返回数据
     dataSource.row[ModifyUserSqlResponse](
       sql"""
-           select
-             user_name as userName,
-             telephone,
-             status,
-             unix_timestamp(updated_at) as updatedAt,
-             email,
-             qq
+           select user_name as userName , telephone, status,
+             unix_timestamp(updated_at) as updatedAt, email, qq
            from user where telephone=${mdRequest.telephone}
          """).get
-    }catch {
-      case e:NoSuchElementException =>
-        throw new SoaException("","完善个人信息失败，找不到用户")
-    }
   }
+
+  /**
+    * 获取用户状态
+    * @param id
+    * @return
+    */
+  def getUserStatus(id:String): Option[Int] = dataSource.row[Int](
+    sql"""
+         select status from user where id = $id
+       """)
+
+  /**
+    * 获取用户状态
+    * @param telephone
+    * @return
+    */
+  def getUserStatusByPhone(telephone:String): Option[Int] = dataSource.row[Int](
+    sql"""
+         select status from user where telephone = $telephone
+       """)
 
   /**
     * 冻结用户
     * @param request
-    * @throws com.isuwang.dapeng.core.SoaException
     * @return
     */
-  @throws(classOf[SoaException])
   def updateUserFreeze(request: FreezeUserRequest) = {
-    dataSource.executeUpdate(
-      sql"""
-           update user set
-           status = 3,
-           remark = ${request.remark}
-         where id = ${request.userId}
+    //冻结用户
+    dataSource.executeUpdate(sql"""
+           update user set status = 3, remark = ${request.remark}
+           where id = ${request.userId}
          """)
 
-    try{
-      dataSource.row[FreezeUserSqlResponse](
-        sql"""
-       select
-       id as userId,
-       status,
-       remark
-       from user
-       where id=${request.userId}
+    //返回用户信息
+    dataSource.row[FreezeUserSqlResponse](sql"""
+       select id as userId, status, remark from user where id=${request.userId}
        """).get
-    }catch {
-      case e:NoSuchElementException =>
-        throw new SoaException("","冻结用户失败")
-    }
   }
 
   /**
     * 拉黑用户
     * @param request
-    * @throws com.isuwang.dapeng.core.SoaException
     * @return
     */
-  @throws(classOf[SoaException])
   def updateUserBlack(request:BlackUserRequest) = {
+    //查询之前的积分，从user表获取
+    val lastIntgr = dataSource.row[Int](sql"""
+           select integral from user where id=${request.userId}
+         """).get
 
-    dataSource.executeUpdate(
-      sql"""
-           insert into integral_journal
-           (
-              user_id,
-                integral_type,
-                integral_price,
-                integral_source,
-                integral,
-                created_at,
-                created_by,
-                updated_at,
-                updated_by,
-                remark
-           )
-           select
-              id as user_id
-              ,2 as integral_type
-              ,integral as integral_price
-              ,2 as integral_source
-              ,integral as integral
-              ,CURRENT_TIMESTAMP as created_at
-               ,2000000001 as created_by
-               ,CURRENT_TIMESTAMP as updated_at
-               ,2000000001 as updated_by
-               ,'' as remark
-           from user where id=${request.userId}
+    //添加一条负增长的积分流水
+    dataSource.executeUpdate(sql"""
+           insert into integral_journal set
+              user_id = ${request.userId}, integral_type = 2, integral_price = $lastIntgr,
+                integral_source = 2, integral = 0, created_at = CURRENT_TIMESTAMP,
+                created_by = 2000000001, updated_at = CURRENT_TIMESTAMP,
+                updated_by = 2000000001, remark = ''
          """)
-    dataSource.executeUpdate(
-      sql"""
-           update user set
-           status = 4,
-           integral = 0,
-           remark = ${request.remark}
-         where id = ${request.userId}
+
+    //拉黑用户
+    dataSource.executeUpdate(sql"""
+           update user set status = 4, integral = 0, remark = ${request.remark}
+           where id = ${request.userId}
          """)
-    try{
-      dataSource.row[BlackUserSqlResponse](
-        sql"""
-       select
-       id as userId,
-       status,
-       remark
-       from user
-       where id=${request.userId}
+
+    //返回已拉黑的用户信息
+    dataSource.row[BlackUserSqlResponse](sql"""
+         select id as userId, status, remark from user where id=${request.userId}
        """).get
-    }catch {
-      case e:NoSuchElementException =>
-        throw new SoaException("","用户设置黑名单失败")
-    }
   }
 
   /**
     * 解冻用户
     * @param request
-    * @throws com.isuwang.dapeng.core.SoaException
     * @return
     */
-  @throws(classOf[SoaException])
   def updateUserUnfreeze(request: UnfreezeUserRequest) = {
-    dataSource.executeUpdate(
-      sql"""
-           update user set
-           status = 1,
-           remark = ${request.remark}
-         where id = ${request.userId}
+    //解冻用户，按照目前的模式也可用于恢复黑名单用户和已逻辑删除用户
+    dataSource.executeUpdate(sql"""
+        update user set status = 1, remark = ${request.remark}
+        where id = ${request.userId}
          """)
 
-    try{
-      dataSource.row[UnfreezeUserSqlResponse](
-        sql"""
-       select
-       id as userId,
-       status,
-       remark
-       from user
-       where id=${request.userId}
+    //返回用户信息
+    dataSource.row[UnfreezeUserSqlResponse](sql"""
+       select id as userId,status,remark from user where id=${request.userId}
        """).get
-    }catch {
-      case e:NoSuchElementException =>
-        throw new SoaException("","冻结用户失败")
-    }
   }
 
 
   /**
     * 改变
     * @param request
-    * @throws com.isuwang.dapeng.core.SoaException
     * @return
     */
-  @throws(classOf[SoaException])
   def updateIntegralChange(request:ChangeIntegralRequest) = {
-    val integType = IntegralTypeEnum.unapply(request.integralType)
-    val integSrc = IntegralSourceEnum.unapply(request.integralSource)
-    var gid:Option[Int] = None
-    dataSource.executeUpdateWithGenerateKey(
-      sql"""
-           insert into integral_journal
-           (
-              user_id,
-                integral_type,
-                integral_price,
-                integral_source,
-                integral,
-                created_at,
-                created_by,
-                updated_at,
-                updated_by,
-                remark
-           )
-           select
-              id as user_id
-              ,${integType} as integral_type
-              ,${request.integralPrice} as integral_price
-              ,${integSrc} as integral_source
-              ,integral as integral
-              ,CURRENT_TIMESTAMP as created_at
-               ,2000000001 as created_by
-               ,CURRENT_TIMESTAMP as updated_at
-               ,2000000001 as updated_by
-               ,'' as remark
-           from user where id=${request.userId}
-         """)
+    val integType = request.integralType.id
+    val integSrc = request.integralSource.id
+
+    //查询之前的积分，从user表获取
+    val lastIntgr = dataSource.row[Int](sql"""
+           select integral from user where id=${request.userId}
+         """).get
+
+    //先更新user表的积分值
     val integPrice =
       if(IntegralTypeEnum.ADD.eq(request.integralType))
         request.integralPrice.toInt
       else if (IntegralTypeEnum.MINUS.eq(request.integralType))
-        ("-"+request.integralPrice).toInt
+        -request.integralPrice.toInt
       else 0
-    dataSource.executeUpdate(
-      sql"""
+    dataSource.executeUpdate(sql"""
            update user set
-           integral = integral + ${integPrice}
+           integral = integral + $integPrice
            where id=${request.userId}
          """)
-    gid.get
+
+    //再添加流水
+    val gid =
+    dataSource.generateKey[Int](sql"""
+           insert into integral_journal set
+              user_id = ${request.userId}, integral_type = ${integType},
+              integral_price = ${request.integralPrice}, integral_source = ${integSrc},
+              integral = ${lastIntgr + integPrice}, created_at = CURRENT_TIMESTAMP,
+              created_by = 2000000001, updated_at = CURRENT_TIMESTAMP,
+              updated_by = 2000000001, remark = ''
+         """)
+    gid
   }
 
 }
