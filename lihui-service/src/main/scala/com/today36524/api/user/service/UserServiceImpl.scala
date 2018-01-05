@@ -78,10 +78,10 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
       assert(!(request.telephone==null || request.telephone.isEmpty),"手机号不能为空")
       assert(CELL_REG.pattern.matcher(request.telephone).matches,
         "手机号不符合规范")
-      assert(!(request.email==null || request.email.isEmpty),"手机号不能为空")
+      assert(!(request.email==null || request.email.isEmpty),"邮箱不能为空")
       assert(MAIL_REG.pattern.matcher(request.email).matches,
         "邮箱不符合规范")
-      assert(!(request.qq==null || request.qq.isEmpty),"手机号不能为空")
+      assert(!(request.qq==null || request.qq.isEmpty),"QQ号不能为空")
       assert(QQ_REG.pattern.matcher(request.qq).matches,
         "QQ号不符合规范")
 
