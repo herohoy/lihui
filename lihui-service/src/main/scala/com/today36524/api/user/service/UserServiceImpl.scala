@@ -6,6 +6,7 @@ import com.today36524.api.user.enums.UserStatusEnum
 import com.today36524.api.user.request._
 import com.today36524.api.user.response._
 import org.springframework.beans.factory.annotation.Autowired
+import wangzx.scala_commons.sql.BeanBuilder
 
 import scala.util.matching.Regex
 
@@ -39,10 +40,12 @@ class UserServiceImpl extends UserService {
     //密码加密处理过程 TODO
 
       val res = userDao.addUserForRegister(request)
-      RegisterUserResponse(res.cell("user_name").getString,
-        res.cell("telephone").getString,
-        UserStatusEnum(res.cell("status").getInt),
-        res.cell("created_at").getDate.getTime)
+    BeanBuilder.build[RegisterUserResponse](res)(
+      "userName" -> res.cell("user_name").getString,
+      "telephone" -> res.cell("telephone").getString,
+      "status" -> UserStatusEnum(res.cell("status").getInt),
+      "createdAt" -> res.cell("created_at").getDate.getTime
+    )
   }
 
   /**
@@ -67,10 +70,16 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
   assert(UserStatusEnum(u.cell("status").getInt)!=UserStatusEnum.BLACK,
     "该用户已被列入黑名单，请联系管理员")
 
-  LoginUserResponse(u.cell("user_name").getString,u.cell("telephone").getString,
-    UserStatusEnum(u.cell("status").getInt),u.cell("integral").getInt,
-    u.cell("created_at").getLong,u.cell("updated_at").getLong,
-    Option(u.cell("email").getString),Option(u.cell("qq").getString))
+  BeanBuilder.build[LoginUserResponse](u)(
+    "userName" -> u.cell("user_name").getString,
+    "telephone" -> u.cell("telephone").getString,
+    "status" -> UserStatusEnum(u.cell("status").getInt),
+    "integral" -> u.cell("integral").getInt,
+    "createdAt" -> u.cell("created_at").getDate.getTime,
+    "updatedAt" -> u.cell("updated_at").getDate.getTime,
+    "email" -> Option(u.cell("email").getString),
+    "qq" -> Option(u.cell("qq").getString)
+  )
 
 }
 
@@ -100,9 +109,18 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
         "该用户已被冻结，请联系管理员")
 
       val r = userDao.updateUserForIntegral(request)
-      ModifyUserResponse(r.cell("user_name").getString,r.cell("telephone").getString,
+
+      BeanBuilder.build[ModifyUserResponse](r)(
+        "userName" -> r.cell("user_name").getString,
+        "telephone" -> r.cell("telephone").getString,
+        "status" -> UserStatusEnum(r.cell("status").getInt),
+        "updatedAt" -> r.cell("updated_at").getDate.getTime,
+        "email" -> Option(r.cell("email").getString),
+        "qq" -> Option(r.cell("qq").getString)
+      )
+      /*ModifyUserResponse(r.cell("user_name").getString,r.cell("telephone").getString,
         UserStatusEnum(r.cell("status").getInt),r.cell("updated_at").getDate.getTime,
-        Option(r.cell("email").getString),Option(r.cell("qq").getString))
+        Option(r.cell("email").getString),Option(r.cell("qq").getString))*/
     }
 
   /**
@@ -123,7 +141,11 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
         "该用户已被冻结，请联系管理员")
 
       val r = userDao.updateUserFreeze(request)
-      FreezeUserResponse(r.userId,UserStatusEnum(r.status),r.remark)
+      BeanBuilder.build[FreezeUserResponse](r)(
+        "userId" -> r.userId,
+        "status" -> UserStatusEnum(r.status),
+        "remark" -> r.remark
+      )
     }
 
   /**
@@ -142,7 +164,11 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
         "该用户已被列入黑名单，请联系管理员")
 
       val r = userDao.updateUserBlack(request)
-      BlackUserResponse(r.userId,UserStatusEnum(r.status),r.remark)
+      BeanBuilder.build[BlackUserResponse](r)(
+        "userId" -> r.userId,
+        "status" -> UserStatusEnum(r.status),
+        "remark" -> r.remark
+      )
     }
 
   /**
@@ -167,7 +193,11 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
         "该用户并非处于冻结状态")
 
       val r = userDao.updateUserUnfreeze(request)
-      UnfreezeUserResponse(r.userId,UserStatusEnum(r.status),r.remark)
+      BeanBuilder.build[UnfreezeUserResponse](r)(
+        "userId" -> r.userId,
+        "status" -> UserStatusEnum(r.status),
+        "remark" -> r.remark
+      )
     }
 
 
