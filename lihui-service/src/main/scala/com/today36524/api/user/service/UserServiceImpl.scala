@@ -5,6 +5,7 @@ import com.today36524.api.user.dao.UserDao
 import com.today36524.api.user.enums.UserStatusEnum
 import com.today36524.api.user.request._
 import com.today36524.api.user.response._
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import wangzx.scala_commons.sql.BeanBuilder
 
@@ -13,6 +14,8 @@ import scala.util.matching.Regex
 class UserServiceImpl extends UserService {
   @Autowired
   var userDao:UserDao = _
+
+  val LOGGER = LoggerFactory.getLogger(classOf[UserServiceImpl])
 
   val USERNAME_REG: Regex = """^[A-Za-z]{1}[A-Za-z0-9-_.]{1,19}$""".r
   val PWD_REG = """^[\S]{8,20}$""".r
@@ -25,6 +28,7 @@ class UserServiceImpl extends UserService {
     **/
   override def registerUser(request: RegisterUserRequest): RegisterUserResponse
   = {
+    LOGGER.debug("注册服务调用开始")
     assert(!(request.userName==null || request.userName.isEmpty),"用户名不能为空")
     assert(USERNAME_REG.pattern.matcher(request.userName).matches,
       "用户名必须为2-20位的英文字母与数字组合，且首字符必须为字母")
@@ -40,6 +44,7 @@ class UserServiceImpl extends UserService {
     //密码加密处理过程 TODO
 
       val res = userDao.addUserForRegister(request)
+    LOGGER.debug("注册服务调用完毕")
     BeanBuilder.build[RegisterUserResponse](res)(
       "userName" -> res.cell("user_name").getString,
       "telephone" -> res.cell("telephone").getString,
@@ -52,6 +57,7 @@ class UserServiceImpl extends UserService {
   ### 用户登录
     **/
 override def login(request: LoginUserRequest): LoginUserResponse ={
+  LOGGER.debug("登录服务调用开始")
   assert(!(request.telephone==null || request.telephone.isEmpty),"手机号不能为空")
   assert(CELL_REG.pattern.matcher(request.telephone).matches,
     "手机号不符合规范")
@@ -70,6 +76,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
   assert(UserStatusEnum(u.cell("status").getInt)!=UserStatusEnum.BLACK,
     "该用户已被列入黑名单，请联系管理员")
 
+  LOGGER.debug("登录服务调用完毕")
   BeanBuilder.build[LoginUserResponse](u)(
     "userName" -> u.cell("user_name").getString,
     "telephone" -> u.cell("telephone").getString,
@@ -88,6 +95,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
     **/
   override def modifyUser(request: ModifyUserRequest): ModifyUserResponse =
     {
+      LOGGER.debug("修改个人资料服务调用开始")
       assert(!(request.email==null || request.email.isEmpty),"邮箱不能为空")
       assert(MAIL_REG.pattern.matcher(request.email).matches,
         "邮箱不符合规范")
@@ -110,6 +118,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
 
       val r = userDao.updateUserForIntegral(request)
 
+      LOGGER.debug("修改个人资料服务调用完毕")
       BeanBuilder.build[ModifyUserResponse](r)(
         "userName" -> r.cell("user_name").getString,
         "telephone" -> r.cell("telephone").getString,
@@ -128,6 +137,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
     **/
   override def freezeUser(request: FreezeUserRequest): FreezeUserResponse =
     {
+      LOGGER.debug("冻结用户服务调用开始")
       val status = userDao.getUserStatus(request.userId)
       assert(status.isInstanceOf[Some[Int]],"用户不存在")
 
@@ -141,6 +151,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
         "该用户已被冻结，请联系管理员")
 
       val r = userDao.updateUserFreeze(request)
+      LOGGER.debug("冻结用户服务调用完毕")
       BeanBuilder.build[FreezeUserResponse](r)(
         "userId" -> r.userId,
         "status" -> UserStatusEnum(r.status),
@@ -153,6 +164,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
     **/
   override def blackUser(request: BlackUserRequest): BlackUserResponse =
     {
+      LOGGER.debug("拉黑用户服务调用开始")
       val status = userDao.getUserStatus(request.userId)
       assert(status.isInstanceOf[Some[Int]],"用户不存在")
 
@@ -164,6 +176,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
         "该用户已被列入黑名单，请联系管理员")
 
       val r = userDao.updateUserBlack(request)
+      LOGGER.debug("拉黑用户服务调用完毕")
       BeanBuilder.build[BlackUserResponse](r)(
         "userId" -> r.userId,
         "status" -> UserStatusEnum(r.status),
@@ -176,8 +189,10 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
     **/
   override def changeUserIntegral(request: ChangeIntegralRequest): Int =
     {
+      LOGGER.debug("记录积分服务调用开始")
       assert(userDao.getUserCountById(request.userId) == 1,"用户不存在")
       assert(INT_REG.pattern.matcher(request.integralPrice).matches,"数字格式不正确")
+      LOGGER.debug("记录积分服务调用完毕")
       userDao.updateIntegralChange(request)
     }
 
@@ -186,6 +201,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
     **/
   override def unfreezeUser(request: UnfreezeUserRequest): UnfreezeUserResponse =
     {
+      LOGGER.debug("解冻用户服务调用开始")
       val status = userDao.getUserStatus(request.userId)
       assert(status.isInstanceOf[Some[Int]],"用户不存在")
 
@@ -193,6 +209,7 @@ override def login(request: LoginUserRequest): LoginUserResponse ={
         "该用户并非处于冻结状态")
 
       val r = userDao.updateUserUnfreeze(request)
+      LOGGER.debug("解冻用户服务调用完毕")
       BeanBuilder.build[UnfreezeUserResponse](r)(
         "userId" -> r.userId,
         "status" -> UserStatusEnum(r.status),
