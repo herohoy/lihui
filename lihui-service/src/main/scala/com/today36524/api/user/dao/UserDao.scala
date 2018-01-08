@@ -15,11 +15,10 @@ class UserDao {
 
   /**
     * 注册时添加用户
-    * @param request 注册请求中包含的用户信息
-    * @return 执行结果数字
+    * param request 注册请求中包含的用户信息
+    * return 执行结果数字
     */
-  def addUserForRegister(request: RegisterUserRequest)
-  = {
+  val addUserForRegister = (request: RegisterUserRequest) => {
     //添加用户表信息
     val uid = dataSource.generateKey[Int](
       sql"""
@@ -49,10 +48,10 @@ class UserDao {
 
   /**
     * 判断用户是否存在，更好的方式，不会频繁抛异常
-    * @param userPhone
-    * @return
+    * param userPhone
+    * return
     */
-  def getUserCountByPhone(userPhone:String) =
+  val getUserCountByPhone = (userPhone:String) =>
     dataSource.row[Int](
       sql"""
        select count(1) from user where telephone=$userPhone
@@ -60,10 +59,10 @@ class UserDao {
 
   /**
     * 通过id判断用户是否存在，更好的方式，不会频繁抛异常
-    * @param id
-    * @return
+    * param id
+    * return
     */
-  def getUserCountById(id:String) =
+  val getUserCountById = (id:String) =>
     dataSource.row[Int](
       sql"""
        select count(1) from user where id=$id
@@ -71,10 +70,10 @@ class UserDao {
 
   /**
     * 用户登录验证
-    * @param loginUser
-    * @return
+    * param loginUser
+    * return
     */
-  def authUser(loginUser:LoginUserRequest) =
+  val authUser = (loginUser:LoginUserRequest) =>
     dataSource.row[Row](
       sql"""
       select
@@ -86,10 +85,10 @@ class UserDao {
 
   /**
     * 完善用户信息并获得积分
-    * @param mdRequest
-    * @return
+    * param mdRequest
+    * return
     */
-  def updateUserForIntegral(mdRequest:ModifyUserRequest) = {
+  val updateUserForIntegral = (mdRequest:ModifyUserRequest) => {
 
     //获取用户当前积分和id
     val nowusr = dataSource.row[Row](
@@ -149,10 +148,10 @@ class UserDao {
 
   /**
     * 冻结用户
-    * @param request
-    * @return
+    * param request
+    * return
     */
-  def updateUserFreeze(request: FreezeUserRequest) = {
+  val updateUserFreeze = (request: FreezeUserRequest) => {
     //冻结用户
     dataSource.executeUpdate(sql"""
            update user set status = 3, remark = ${request.remark}
@@ -167,10 +166,10 @@ class UserDao {
 
   /**
     * 拉黑用户
-    * @param request
-    * @return
+    * param request
+    * return
     */
-  def updateUserBlack(request:BlackUserRequest) = {
+  val updateUserBlack = (request:BlackUserRequest) => {
     //查询之前的积分，从user表获取
     val lastIntgr = dataSource.row[Int](sql"""
            select integral from user where id=${request.userId}
@@ -199,10 +198,10 @@ class UserDao {
 
   /**
     * 解冻用户
-    * @param request
-    * @return
+    * param request
+    * return
     */
-  def updateUserUnfreeze(request: UnfreezeUserRequest) = {
+  val updateUserUnfreeze = (request: UnfreezeUserRequest) => {
     //解冻用户，按照目前的模式也可用于恢复黑名单用户和已逻辑删除用户
     dataSource.executeUpdate(sql"""
         update user set status = 1, remark = ${request.remark}
@@ -218,10 +217,10 @@ class UserDao {
 
   /**
     * 改变
-    * @param request
-    * @return
+    * param request
+    * return
     */
-  def updateIntegralChange(request:ChangeIntegralRequest) = {
+  val updateIntegralChange = (request:ChangeIntegralRequest) => {
     val integType = request.integralType.id
     val integSrc = request.integralSource.id
 
